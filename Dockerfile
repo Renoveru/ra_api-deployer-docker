@@ -14,7 +14,7 @@ RUN gem install bundler
 
 # node install
 RUN set -ex \
-    && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+    && curl -sL https://deb.nodesource.com/setup_6.x | bash - \
     && DEBIAN_FRONTEND=noninteractive apt-get -y install \
       nodejs \
       --no-install-recommends \
