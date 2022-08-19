@@ -14,21 +14,15 @@ RUN gem install bundler
 
 # node install
 RUN set -ex \
-    && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
-    && DEBIAN_FRONTEND=noninteractive apt-get -y install \
+    && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+    && DEBIAN_FRONTEND=noninteractive apt-get --yes --force-yes install \
       nodejs \
       --no-install-recommends \
-    && npm cache clean \
+    && npm cache verify --force \
     && npm install n -g \
-    && n 6.1.0 \
+    && n 10.0.0 \
     && apt-get purge -y nodejs \
     && rm -rf /var/lib/apt/lists/*
-
-# yarn install
-# 参考: https://yarnpkg.com/lang/ja/docs/install/#debian-stable
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update && apt-get install -y yarn --no-install-recommends
 
 RUN set -ex \
     && apt-get update  \
