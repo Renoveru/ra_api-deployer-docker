@@ -1,32 +1,10 @@
-FROM sikmi/awseb-deployer-docker
+FROM ghcr.io/renoveru/awseb-deployer-docker
+FROM node:18.19.0
+FROM ruby:3.3.0
 
-# ruby install
-RUN curl -O http://ftp.ruby-lang.org/pub/ruby/2.7/ruby-2.7.5.tar.gz && \
-    tar -zxvf ruby-2.7.5.tar.gz && \
-    cd ruby-2.7.5 && \
-    ./configure --disable-install-doc && \
-    make && \
-    make install && \
-    cd .. && \
-    rm -r ruby-2.7.5 ruby-2.7.5.tar.gz
+RUN apt-get update -qq \
+    && apt-get install -y build-essential libpq-dev default-mysql-client \
+    --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN gem install bundler
-
-# node install
-RUN set -ex \
-    && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
-    && DEBIAN_FRONTEND=noninteractive apt-get --yes --force-yes install \
-      nodejs \
-      --no-install-recommends \
-    && npm cache verify --force \
-    && npm install n -g \
-    && n 10.0.0 \
-    && apt-get purge -y nodejs \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN set -ex \
-    && apt-get update  \
-    && apt-get install -y \
-      mysql-client \
-      --no-install-recommends  \
-    && rm -rf /var/lib/apt/lists/*

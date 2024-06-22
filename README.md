@@ -1,10 +1,4 @@
-## Docker Hubへ登録
+## ra_api-deployer-docker
 
-[cytance](https://hub.docker.com/u/cytance/dashboard/)
-管理者から招待してもらう
-
-```
-docker login
-docker build -t cytance/ra_api-deployer-docker:{tag} .
-docker push cytance/ra_api-deployer-docker:{tag}
-```
+[元リポジトリ](https://github.com/sikmi/ra_api-deployer-docker)
+[元Docker Hub](https://hub.docker.com/r/sikmi/ra_api-deployer-docker)
