@@ -9,4 +9,6 @@ RUN apt-get update -qq \
     --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
+COPY --from=node:18.19.0 /usr/local /usr/local
+
 RUN gem install bundler
