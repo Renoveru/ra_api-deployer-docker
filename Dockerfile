@@ -1,4 +1,4 @@
-FROM ghcr.io/renoveru/awseb-deployer-docker
+FROM ghcr.io/renoveru/awseb-deployer-docker:latest
 FROM node:18.19.0
 FROM ruby:3.3.0
 
